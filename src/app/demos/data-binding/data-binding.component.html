@@ -1,0 +1,34 @@
+<div class="container main-container">
+    <h3>Interpolation</h3>
+
+    <p>The number of clicks is: {{ clickCounter}}</p>
+
+    <br>
+    <br>
+
+    <h3>Property Binding</h3>
+
+    <button class="btn btn-info" [disabled]="clickCounter >= 10">Info</button>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h3>Event Binding</h3>
+    <button class="btn btn-warning" (click)="addClick()">Click me</button>
+    <button class="btn btn-danger" (click)="resetCounter()" [disabled]="clickCounter < 10">Reset Counter</button>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h3>Two-way Binding</h3>
+
+    <input type="text" [(ngModel)]="name" placeholder="Write your name">
+    <br>
+    <br>
+    <label [ngClass]="name">Your name is: {{ name }}</label>
+
+</div>
