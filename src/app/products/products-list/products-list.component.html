@@ -1,0 +1,23 @@
+<div class="container main-container">
+    <div class="row text-center">
+        <div *ngFor="let product of products" class="col-md-4" style="padding-bottom: 30px;">
+            <div class="card h-100">
+                <a class="text-decoration-none" [routerLink]="['/product-detail', product.id]">
+                    <div style="align-content:center;">
+                        <img src="/assets/{{product.image}}" height="164px" width="253px" alt="">
+                    </div>
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title"> {{ product.name }}</h4>
+                    <p>For only:</p>
+                    <div><h4>R$ {{ product.value}}</h4></div>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary" [routerLink]="['/cart', product.id]">
+                        <span class="fa fa-shopping-cart"></span> Buy
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
