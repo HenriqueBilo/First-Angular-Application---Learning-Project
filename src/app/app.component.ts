@@ -8,7 +8,7 @@ import { ProductService } from './products/products.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   imports: [
-    MenuComponent, FooterComponent, RouterOutlet,
+    MenuComponent, FooterComponent, RouterOutlet
   ],
   providers: [ProductService],
 })
