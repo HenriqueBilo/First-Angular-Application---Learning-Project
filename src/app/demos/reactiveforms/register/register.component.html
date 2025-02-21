@@ -7,7 +7,11 @@
             <div class="form-group">
                 <label class="col-md-2 control-label" for="name">Full name</label>
                 <div class="col-md-10">
-                    <input class="form-control" id="name" type="text" placeholder="Name (required)" formControlName="name"/>
+                    <input class="form-control" id="name" type="text" placeholder="Name (required)" formControlName="name"
+                    [ngClass]="{'is-invalid': formRegister.get('name')?.errors && (formRegister.get('name')?.dirty || formRegister.get('name')?.touched)}"/>
+                    <span class="text-danger" *ngIf="formRegister.get('name')?.errors && (formRegister.get('name')?.dirty || formRegister.get('name')?.touched)">
+                        <p>Fill in the name field</p>
+                    </span>
                 </div>
             </div>
 
@@ -21,7 +25,14 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">E-mail</label>
                 <div class="col-md-10">
-                    <input class="form-control" id="email" type="text" placeholder="E-mail (required)" formControlName="email"/>
+                    <input class="form-control" id="email" type="text" placeholder="E-mail (required)" formControlName="email"
+                    [ngClass]="{'is-invalid': formRegister.get('email')?.errors && (formRegister.get('email')?.dirty || formRegister.get('email')?.touched)}"/>
+                    <span class="text-danger" *ngIf="formRegister.get('email')?.errors?.['required'] && (formRegister.get('email')?.dirty || formRegister.get('email')?.touched)">
+                        <p>Fill in the email field</p>
+                    </span>
+                    <span class="text-danger" *ngIf="formRegister.get('email')?.errors?.['email'] && (formRegister.get('email')?.dirty || formRegister.get('email')?.touched)">
+                        <p>Invalid email format</p>
+                    </span>
                 </div>
             </div>
 
@@ -42,8 +53,17 @@
             <div clas="form-group">
                 <div class="col-md-4 col-md-offset-2">
                     <span>
-                        <button class="btn btn-success" id="register" type="submit">Register</button>
+                        <button class="btn btn-success" id="register" type="submit" [disabled]="!formRegister.valid">Register</button>
                     </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                    <p>Valid Form: {{ formRegister.valid }}</p>
+                    <p>Valid Touched: {{ formRegister.touched }}</p>
+                    <p>Valid Dirty: {{ formRegister.dirty }}</p>
+                    <p>Form Result: {{ formResult }}</p>
                 </div>
             </div>
 

@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { User } from './models/user';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
 })
 export class RegisterComponent implements OnInit {
   
+  formRegister!: FormGroup;
+  user!: User;
+  formResult: string = '';
+
   constructor(private fb: FormBuilder) { }
 
-  formRegister!: FormGroup;
-  
   ngOnInit(){
     this.formRegister = this.fb.group({
-    name: [''],
-    email: [''],
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     cpf: [''],
     password: [''],
     passwordConfirmation: [''],
@@ -23,6 +27,10 @@ export class RegisterComponent implements OnInit {
   }
 
   addUser(){
-    let x = this.formRegister.value;
+    if(this.formRegister.dirty && this.formRegister.valid)
+    {
+      this.user = Object.assign({}, this.user, this.formRegister.value);
+      this.formResult = JSON.stringify(this.formRegister.value);
+    }
   }
 }
